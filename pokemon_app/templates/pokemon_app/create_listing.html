@@ -1,0 +1,37 @@
+{% extends 'pokemon_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create Listing - Pokémon Trading Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>List a Pokémon for Sale</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Create Listing</button>
+                        <a href="{% url 'my_pokemon' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="alert alert-info mb-0">
+                    <h5>Listing Tips:</h5>
+                    <ul class="mb-0">
+                        <li>Set a competitive price based on the Pokémon's rarity and stats</li>
+                        <li>Use the description to highlight special features of your Pokémon</li>
+                        <li>The marketplace takes no commission - you'll receive 100% of the sale price</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

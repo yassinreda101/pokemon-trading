@@ -1,0 +1,423 @@
+[
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 1,
+    "fields": {
+      "name": "Normal"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 2,
+    "fields": {
+      "name": "Fire"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 3,
+    "fields": {
+      "name": "Water"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 4,
+    "fields": {
+      "name": "Electric"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 5,
+    "fields": {
+      "name": "Grass"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 6,
+    "fields": {
+      "name": "Ice"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 7,
+    "fields": {
+      "name": "Fighting"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 8,
+    "fields": {
+      "name": "Poison"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 9,
+    "fields": {
+      "name": "Ground"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 10,
+    "fields": {
+      "name": "Flying"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 11,
+    "fields": {
+      "name": "Psychic"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 12,
+    "fields": {
+      "name": "Bug"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 13,
+    "fields": {
+      "name": "Rock"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 14,
+    "fields": {
+      "name": "Ghost"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 15,
+    "fields": {
+      "name": "Dragon"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 16,
+    "fields": {
+      "name": "Dark"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 17,
+    "fields": {
+      "name": "Steel"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemontype",
+    "pk": 18,
+    "fields": {
+      "name": "Fairy"
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 1,
+    "fields": {
+      "name": "Bulbasaur",
+      "pokedex_number": 1,
+      "rarity": "common",
+      "description": "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
+      "hp": 45,
+      "attack": 49,
+      "defense": 49,
+      "sp_attack": 65,
+      "sp_defense": 65,
+      "speed": 45,
+      "types": [5, 8]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 2,
+    "fields": {
+      "name": "Charmander",
+      "pokedex_number": 4,
+      "rarity": "common",
+      "description": "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.",
+      "hp": 39,
+      "attack": 52,
+      "defense": 43,
+      "sp_attack": 60,
+      "sp_defense": 50,
+      "speed": 65,
+      "types": [2]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 3,
+    "fields": {
+      "name": "Squirtle",
+      "pokedex_number": 7,
+      "rarity": "common",
+      "description": "When it retracts its long neck into its shell, it squirts out water with vigorous force.",
+      "hp": 44,
+      "attack": 48,
+      "defense": 65,
+      "sp_attack": 50,
+      "sp_defense": 64,
+      "speed": 43,
+      "types": [3]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 4,
+    "fields": {
+      "name": "Pikachu",
+      "pokedex_number": 25,
+      "rarity": "uncommon",
+      "description": "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "sp_attack": 50,
+      "sp_defense": 50,
+      "speed": 90,
+      "types": [4]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 5,
+    "fields": {
+      "name": "Jigglypuff",
+      "pokedex_number": 39,
+      "rarity": "common",
+      "description": "Jigglypuff has top-notch lung capacity, even by comparison to other Pokémon. It won't stop singing its lullabies until its foes fall asleep.",
+      "hp": 115,
+      "attack": 45,
+      "defense": 20,
+      "sp_attack": 45,
+      "sp_defense": 25,
+      "speed": 20,
+      "types": [1, 18]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 6,
+    "fields": {
+      "name": "Meowth",
+      "pokedex_number": 52,
+      "rarity": "common",
+      "description": "It loves to collect shiny things. If it's in a good mood, it might even let its Trainer have a look at its collection.",
+      "hp": 40,
+      "attack": 45,
+      "defense": 35,
+      "sp_attack": 40,
+      "sp_defense": 40,
+      "speed": 90,
+      "types": [1]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 7,
+    "fields": {
+      "name": "Psyduck",
+      "pokedex_number": 54,
+      "rarity": "common",
+      "description": "Psyduck is constantly beset by headaches. If the Pokémon lets its strange power erupt, apparently the pain subsides for a while.",
+      "hp": 50,
+      "attack": 52,
+      "defense": 48,
+      "sp_attack": 65,
+      "sp_defense": 50,
+      "speed": 55,
+      "types": [3]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 8,
+    "fields": {
+      "name": "Machop",
+      "pokedex_number": 66,
+      "rarity": "common",
+      "description": "Its whole body is composed of muscles. Even though it's the size of a human child, it can hurl 100 grown-ups.",
+      "hp": 70,
+      "attack": 80,
+      "defense": 50,
+      "sp_attack": 35,
+      "sp_defense": 35,
+      "speed": 35,
+      "types": [7]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 9,
+    "fields": {
+      "name": "Gengar",
+      "pokedex_number": 94,
+      "rarity": "rare",
+      "description": "On the night of a full moon, if shadows move on their own and laugh, it must be Gengar's doing.",
+      "hp": 60,
+      "attack": 65,
+      "defense": 60,
+      "sp_attack": 130,
+      "sp_defense": 75,
+      "speed": 110,
+      "types": [14, 8]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 10,
+    "fields": {
+      "name": "Eevee",
+      "pokedex_number": 133,
+      "rarity": "uncommon",
+      "description": "It has the ability to alter the composition of its body to suit its surrounding environment.",
+      "hp": 55,
+      "attack": 55,
+      "defense": 50,
+      "sp_attack": 45,
+      "sp_defense": 65,
+      "speed": 55,
+      "types": [1]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 11,
+    "fields": {
+      "name": "Snorlax",
+      "pokedex_number": 143,
+      "rarity": "rare",
+      "description": "It is not satisfied unless it eats over 880 pounds of food every day. When it is done eating, it goes promptly to sleep.",
+      "hp": 160,
+      "attack": 110,
+      "defense": 65,
+      "sp_attack": 65,
+      "sp_defense": 110,
+      "speed": 30,
+      "types": [1]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 12,
+    "fields": {
+      "name": "Mewtwo",
+      "pokedex_number": 150,
+      "rarity": "legendary",
+      "description": "Its DNA is almost the same as Mew's. However, its size and disposition are vastly different.",
+      "hp": 106,
+      "attack": 110,
+      "defense": 90,
+      "sp_attack": 154,
+      "sp_defense": 90,
+      "speed": 130,
+      "types": [11]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 13,
+    "fields": {
+      "name": "Mew",
+      "pokedex_number": 151,
+      "rarity": "mythical",
+      "description": "When viewed through a microscope, this Pokémon's short, fine, delicate hair can be seen.",
+      "hp": 100,
+      "attack": 100,
+      "defense": 100,
+      "sp_attack": 100,
+      "sp_defense": 100,
+      "speed": 100,
+      "types": [11]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 14,
+    "fields": {
+      "name": "Togepi",
+      "pokedex_number": 175,
+      "rarity": "uncommon",
+      "description": "The shell seems to be filled with joy. It is said that it will share good luck when treated kindly.",
+      "hp": 35,
+      "attack": 20,
+      "defense": 65,
+      "sp_attack": 40,
+      "sp_defense": 65,
+      "speed": 20,
+      "types": [18]
+    }
+  },
+  {
+    "model": "pokemon_app.pokemon",
+    "pk": 15,
+    "fields": {
+      "name": "Mareep",
+      "pokedex_number": 179,
+      "rarity": "common",
+      "description": "If static electricity builds in its body, its fleece doubles in volume. Touching it will shock you.",
+      "hp": 55,
+      "attack": 40,
+      "defense": 40,
+      "sp_attack": 65,
+      "sp_defense": 45,
+      "speed": 35,
+      "types": [4]
+    }
+  },
+  {
+    "model": "pokemon_app.badge",
+    "pk": 1,
+    "fields": {
+      "name": "Starter Trainer",
+      "description": "Created your trainer account and received your first Pokémon"
+    }
+  },
+  {
+    "model": "pokemon_app.badge",
+    "pk": 2,
+    "fields": {
+      "name": "Novice Collector",
+      "description": "Collect 5 Pokémon"
+    }
+  },
+  {
+    "model": "pokemon_app.badge",
+    "pk": 3,
+    "fields": {
+      "name": "Intermediate Collector",
+      "description": "Collect 10 Pokémon"
+    }
+  },
+  {
+    "model": "pokemon_app.badge",
+    "pk": 4,
+    "fields": {
+      "name": "First Sale",
+      "description": "Complete your first Pokémon sale"
+    }
+  },
+  {
+    "model": "pokemon_app.badge",
+    "pk": 5,
+    "fields": {
+      "name": "First Purchase",
+      "description": "Buy your first Pokémon from marketplace"
+    }
+  }
+]

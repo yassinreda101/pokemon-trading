@@ -1,0 +1,174 @@
+{% extends 'pokemon_app/base.html' %}
+
+{% block title %}{{ user.username }}'s Profile - Pokémon Trading{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Trainer Profile</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed={{ user.username }}" alt="Avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                </div>
+                <h4 class="text-center">
+                    {% if trainer.display_name %}
+                    {{ trainer.display_name }}
+                    {% else %}
+                    {{ user.username }}
+                    {% endif %}
+                </h4>
+                <div class="text-center mb-3">
+                    <span class="badge bg-warning text-dark">{{ trainer.coins }} Coins</span>
+                    <span class="badge bg-info">{{ total_pokemon }} Pokémon</span>
+                    <span class="badge bg-success">{{ achievements.count }} Achievements</span>
+                </div>
+                {% if trainer.bio %}
+                <div class="mb-3">
+                    <p>{{ trainer.bio }}</p>
+                </div>
+                {% endif %}
+                <div class="text-center">
+                    <a href="{% url 'edit_profile' %}" class="btn btn-sm btn-outline-primary">Edit Profile</a>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-center">
+                Trainer since {{ trainer.created_at|date:"F j, Y" }}
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Collection Stats</h4>
+            </div>
+            <div class="card-body">
+                <h5>By Type:</h5>
+                <ul class="list-group mb-3">
+                    {% for type, count in pokemon_types.items %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ type }}
+                        <span class="badge bg-primary rounded-pill">{{ count }}</span>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No Pokémon collected yet</li>
+                    {% endfor %}
+                </ul>
+
+                <h5>By Rarity:</h5>
+                <ul class="list-group">
+                    {% for rarity, count in rarities.items %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ rarity|title }}
+                        <span class="badge bg-primary rounded-pill">{{ count }}</span>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No Pokémon collected yet</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4>Recent Pokémon</h4>
+                <a href="{% url 'my_pokemon' %}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for item in pokemon_collection|slice:":6" %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            {% if item.pokemon.image %}
+                            <img src="{{ item.pokemon.image.url }}" class="card-img-top" alt="{{ item.pokemon.name }}">
+                            {% else %}
+                            <div class="card-img-top bg-light text-center py-4">
+                                <span class="display-4">?</span>
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {% if item.nickname %}
+                                    {{ item.nickname }}
+                                    {% else %}
+                                    {{ item.pokemon.name }}
+                                    {% endif %}
+                                </h5>
+                                <p class="card-text">
+                                    <span class="badge bg-secondary">{{ item.pokemon.get_rarity_display }}</span>
+                                    {% for type in item.pokemon.types.all %}
+                                    <span class="badge bg-info">{{ type.name }}</span>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col">
+                        <p class="text-muted">No Pokémon in your collection yet.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4>Recent Achievements</h4>
+                        <a href="{% url 'achievements' %}" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            {% for achievement in achievements|slice:":5" %}
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ achievement.badge.name }}</h5>
+                                    <small>{{ achievement.earned_at|date:"M d" }}</small>
+                                </div>
+                                <p class="mb-1">{{ achievement.badge.description }}</p>
+                            </div>
+                            {% empty %}
+                            <div class="text-muted">No achievements yet. Start collecting!</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4>Marketplace Listings</h4>
+                        <a href="{% url 'create_listing' %}" class="btn btn-sm btn-primary">Create Listing</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            {% for listing in active_listings|slice:":5" %}
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ listing.pokemon.pokemon.name }}</h5>
+                                    <span class="badge bg-success">{{ listing.price }} coins</span>
+                                </div>
+                                <p class="mb-1">
+                                    {% for type in listing.pokemon.pokemon.types.all %}
+                                    <span class="badge bg-info">{{ type.name }}</span>
+                                    {% endfor %}
+                                </p>
+                                <small>Listed on {{ listing.listed_at|date:"M d, Y" }}</small>
+                            </div>
+                            {% empty %}
+                            <div class="text-muted">No active listings. List a Pokémon for sale!</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

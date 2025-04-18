@@ -1,0 +1,116 @@
+/* Main Styles for Pokémon Trading Platform */
+
+/* Custom colors for Pokémon types */
+.badge.bg-info {
+    background-color: #3dc7ef !important;
+}
+
+.badge.bg-success {
+    background-color: #9bcc50 !important;
+}
+
+.badge.bg-danger {
+    background-color: #f16e57 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffd970 !important;
+    color: #212529 !important;
+}
+
+.badge.bg-secondary {
+    background-color: #a4acaf !important;
+}
+
+.badge.bg-primary {
+    background-color: #4592c4 !important;
+}
+
+/* Card hover effects */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom navbar styling */
+.navbar-dark.bg-primary {
+    background-color: #ee1515 !important;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 2rem;
+}
+
+/* Custom button styles */
+.btn-primary {
+    background-color: #3b5ba7;
+    border-color: #3b5ba7;
+}
+
+.btn-primary:hover {
+    background-color: #2a4076;
+    border-color: #2a4076;
+}
+
+.btn-success {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+/* Jumbotron styling */
+.jumbotron {
+    background: linear-gradient(135deg, #ee1515 0%, #f88a8a 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+}
+
+.jumbotron h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress bars for stats */
+.progress {
+    height: 25px;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    line-height: 25px;
+    font-weight: bold;
+}
+
+/* Badge styling */
+.card-header, .card-footer {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Avatar styling */
+.rounded-circle {
+    border: 3px solid #eee;
+}
+
+/* Layout spacing */
+body {
+    padding-bottom: 2rem;
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: contain;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 150px;
+    }
+}

@@ -1,0 +1,44 @@
+{% extends 'pokemon_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Sign Up - Pokémon Trading Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="text-center">Sign Up</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mb-0">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4>New Trainer Bonus!</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    When you sign up, you'll receive:
+                </p>
+                <ul>
+                    <li>5 random starter Pokémon to begin your collection</li>
+                    <li>1,000 coins to start trading in the marketplace</li>
+                    <li>Your first Trainer Badge</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

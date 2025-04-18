@@ -1,0 +1,158 @@
+{% extends 'pokemon_app/base.html' %}
+
+{% block title %}{{ pokemon.name }} - Pokémon Trading Platform{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ pokemon.name }} <small class="text-muted">#{{ pokemon.pokedex_number }}</small></h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if pokemon.image %}
+                        <img src="{{ pokemon.image.url }}" class="img-fluid rounded" alt="{{ pokemon.name }}">
+                        {% else %}
+                        <div class="bg-light text-center py-5 rounded">
+                            <span class="display-1">?</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Types:</h5>
+                        <p>
+                            {% for type in pokemon.types.all %}
+                            <span class="badge bg-info">{{ type.name }}</span>
+                            {% endfor %}
+                        </p>
+
+                        <h5>Rarity:</h5>
+                        <p><span class="badge bg-secondary">{{ pokemon.get_rarity_display }}</span></p>
+
+                        {% if pokemon.description %}
+                        <h5>Description:</h5>
+                        <p>{{ pokemon.description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h4>Stats</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>HP:</th>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ pokemon.hp }}%;" aria-valuenow="{{ pokemon.hp }}" aria-valuemin="0" aria-valuemax="100">{{ pokemon.hp }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Attack:</th>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ pokemon.attack }}%;" aria-valuenow="{{ pokemon.attack }}" aria-valuemin="0" aria-valuemax="100">{{ pokemon.attack }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Defense:</th>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: {{ pokemon.defense }}%;" aria-valuenow="{{ pokemon.defense }}" aria-valuemin="0" aria-valuemax="100">{{ pokemon.defense }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Sp. Attack:</th>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ pokemon.sp_attack }}%;" aria-valuenow="{{ pokemon.sp_attack }}" aria-valuemin="0" aria-valuemax="100">{{ pokemon.sp_attack }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Sp. Defense:</th>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ pokemon.sp_defense }}%;" aria-valuenow="{{ pokemon.sp_defense }}" aria-valuemin="0" aria-valuemax="100">{{ pokemon.sp_defense }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Speed:</th>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ pokemon.speed }}%;" aria-valuenow="{{ pokemon.speed }}" aria-valuemin="0" aria-valuemax="100">{{ pokemon.speed }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total:</th>
+                        <td><strong>{{ pokemon.total_stats }}</strong></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if listings %}
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Marketplace Listings</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Seller</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Listed On</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for listing in listings %}
+                <tr>
+                    <td>{{ listing.seller.user.username }}</td>
+                    <td>{{ listing.price }} coins</td>
+                    <td>
+                        {% if listing.description %}
+                        {{ listing.description }}
+                        {% else %}
+                        <em>No description</em>
+                        {% endif %}
+                    </td>
+                    <td>{{ listing.listed_at|date:"M d, Y" }}</td>
+                    <td>
+                        {% if user.is_authenticated and user.profile != listing.seller %}
+                        <a href="{% url 'buy_pokemon' listing.id %}" class="btn btn-sm btn-success" onclick="return confirm('Are you sure you want to buy this Pokémon for {{ listing.price }} coins?')">Buy</a>
+                        {% elif user.is_authenticated %}
+                        <span class="badge bg-secondary">Your Listing</span>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary">Login to Buy</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

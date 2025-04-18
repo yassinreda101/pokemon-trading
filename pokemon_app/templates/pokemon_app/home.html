@@ -1,0 +1,106 @@
+{% extends 'pokemon_app/base.html' %}
+
+{% block title %}Home - Pokémon Trading Platform{% endblock %}
+
+{% block content %}
+<div class="jumbotron py-5 bg-light rounded mb-4">
+    <div class="container text-center">
+        <h1 class="display-4">Welcome to Pokémon Trading</h1>
+        <p class="lead">
+            Collect, trade, and battle with {{ total_pokemon }} different Pokémon species!
+        </p>
+        {% if not user.is_authenticated %}
+        <div class="mt-4">
+            <a href="{% url 'signup' %}" class="btn btn-primary btn-lg me-2">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">Login</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Featured Pokémon</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for pokemon in featured_pokemon %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            {% if pokemon.image %}
+                            <img src="{{ pokemon.image.url }}" class="card-img-top" alt="{{ pokemon.name }}">
+                            {% else %}
+                            <div class="card-img-top bg-light text-center py-4">
+                                <span class="display-4">?</span>
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pokemon.name }}</h5>
+                                <p class="card-text">
+                                    <span class="badge bg-secondary">{{ pokemon.get_rarity_display }}</span>
+                                    {% for type in pokemon.types.all %}
+                                    <span class="badge bg-info">{{ type.name }}</span>
+                                    {% endfor %}
+                                </p>
+                                <a href="{% url 'pokemon_detail' pokemon.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col">
+                        <p class="text-muted">No Pokémon found.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Recent Marketplace Listings</h4>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for listing in recent_listings %}
+                    <a href="{% url 'pokemon_detail' listing.pokemon.pokemon.id %}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ listing.pokemon.pokemon.name }}</h5>
+                            <small>{{ listing.price }} coins</small>
+                        </div>
+                        <p class="mb-1">
+                            {% for type in listing.pokemon.pokemon.types.all %}
+                            <span class="badge bg-info">{{ type.name }}</span>
+                            {% endfor %}
+                        </p>
+                        <small>Listed by {{ listing.seller.user.username }}</small>
+                    </a>
+                    {% empty %}
+                    <div class="text-muted">No active listings found.</div>
+                    {% endfor %}
+                </div>
+                <div class="mt-3">
+                    <a href="{% url 'marketplace' %}" class="btn btn-outline-primary btn-sm">View All Listings</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4>Getting Started</h4>
+            </div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li>Create an account to receive starter Pokémon</li>
+                    <li>Explore the Pokédex to see all available Pokémon</li>
+                    <li>Buy and sell Pokémon in the marketplace</li>
+                    <li>Earn achievements as you build your collection</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

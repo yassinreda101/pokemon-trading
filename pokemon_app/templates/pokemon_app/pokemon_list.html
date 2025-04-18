@@ -1,0 +1,67 @@
+{% extends 'pokemon_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Pokédex - Pokémon Trading Platform{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h4>Search & Filter</h4>
+            </div>
+            <div class="card-body">
+                <form method="get">
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Search</button>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mb-0">Found {{ filtered_count }} of {{ total_count }} Pokémon</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header">
+                <h4>Pokédex</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for pokemon in pokemon %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            {% if pokemon.image %}
+                            <img src="{{ pokemon.image.url }}" class="card-img-top" alt="{{ pokemon.name }}">
+                            {% else %}
+                            <div class="card-img-top bg-light text-center py-4">
+                                <span class="display-4">?</span>
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pokemon.name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">#{{ pokemon.pokedex_number }}</h6>
+                                <p class="card-text">
+                                    <span class="badge bg-secondary">{{ pokemon.get_rarity_display }}</span>
+                                    {% for type in pokemon.types.all %}
+                                    <span class="badge bg-info">{{ type.name }}</span>
+                                    {% endfor %}
+                                </p>
+                                <a href="{% url 'pokemon_detail' pokemon.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            No Pokémon found matching your search criteria.
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
