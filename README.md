@@ -78,23 +78,6 @@ Mehtab Nasir
 Araav Yadav
 Joshua Kim
 
-pokemon_trading/
-├── pokemon_trading/         # Project settings folder
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── pokemon_app/             # Main application
-│   ├── models.py            # Database models
-│   ├── views.py             # View functions
-│   ├── forms.py             # Forms for user input
-│   ├── urls.py              # URL routing
-│   ├── admin.py             # Admin site configuration
-│   ├── templates/           # HTML templates
-│   ├── static/              # Static assets (CSS, JS)
-│   └── fixtures/            # Initial data
-├── media/                   # User-uploaded media
-└── manage.py                # Django management script
-
 Course Context
 This project was developed for CS 2340: Objects and Design at Georgia Tech. The focus was on applying object-oriented design principles, implementing user stories, and developing a web application with proper separation of concerns.
 Future Enhancements
